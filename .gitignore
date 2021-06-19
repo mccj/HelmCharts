@@ -1,7 +1,7 @@
 # Chart dependencies
 /charts/*/charts
 .idea
-*.tgz
+# *.tgz
 /.idea/*
 .vscode
 .DS_Store
