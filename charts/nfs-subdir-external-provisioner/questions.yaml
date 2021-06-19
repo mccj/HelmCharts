@@ -1,8 +1,8 @@
 #categories:
 #- storage
-#labels:
-#  io.rancher.certified: experimental
-#  io.rancher.role: cluster
+labels:
+  io.rancher.certified: experimental
+  io.rancher.role: cluster
 #questions:
 ## nfs setting
 #- variable: nfs.server
