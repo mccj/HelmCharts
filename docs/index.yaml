@@ -16,6 +16,6 @@ entries:
     sources:
     - https://github.com/mccj/HelmCharts/tree/main/charts/nfs-subdir-external-provisioner
     urls:
-    - https://raw.githubusercontent.com/mccj/HelmCharts/main/releases/nfs-subdir-external-provisioner-4.0.2.tgz
+    - https://github.com/mccj/HelmCharts/releases/download/001/nfs-subdir-external-provisioner-4.0.2.tgz
     version: 4.0.11
 generated: "2021-02-04T17:34:50.82508993Z"
