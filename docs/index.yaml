@@ -3,13 +3,13 @@ entries:
   k8s-for-mikrotik-loadbalancer:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-02-15T15:07:54.2973089+08:00"
+    created: "2022-02-15T15:18:11.3044557+08:00"
     description: k8s for mikrotik loadbalancer
-    digest: 0468829aa29e1c492c7c103edfe069ef437726fa905d45f9e4b9cd3c038aa60c
+    digest: 8c16aaf4d412b7cc3af1dab22e87fae15cd7179e8ec11541df4c78d1a5161bd7
     icon: https://i.mt.lv/img/mt/v2/logo.svg
     name: k8s-for-mikrotik-loadbalancer
     type: application
     urls:
     - releases/k8s-for-mikrotik-loadbalancer-0.1.21.tgz
     version: 0.1.21
-generated: "2022-02-15T15:07:54.2956449+08:00"
+generated: "2022-02-15T15:18:11.3034559+08:00"
