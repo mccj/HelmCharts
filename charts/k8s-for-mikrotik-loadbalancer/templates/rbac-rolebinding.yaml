@@ -1,0 +1,20 @@
+{{- if and .Values.rbac.create (not .Values.rbac.clusterAdminRole) }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: {{ template "k8s-for-mikrotik-loadbalancer.name" . }}
+    chart: {{ template "k8s-for-mikrotik-loadbalancer.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ template "k8s-for-mikrotik-loadbalancer.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "k8s-for-mikrotik-loadbalancer.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "k8s-for-mikrotik-loadbalancer.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end }}

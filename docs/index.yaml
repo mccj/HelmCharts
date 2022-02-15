@@ -1,21 +1,15 @@
 apiVersion: v1
 entries:
-  nfs-subdir-external-provisioner:
-  - apiVersion: v1
-    appVersion: 4.0.2
-    created: "2021-06-13T15:09:20.655190534Z"
-    description: nfs-subdir-external-provisioner is an automatic provisioner that used your *already configured* NFS server, automatically creating Persistent Volumes.
-    digest: 7638f7594320dad358b3ca1e396e655f43a27b3b92023fa571fb68fe3d3559b6
-    home: https://github.com/mccj/HelmCharts/tree/main/charts/nfs-subdir-external-provisioner
-    keywords:
-    - nfs
-    - storage
-    - provisioner
-    kubeVersion: '>=1.9.0-0'
-    name: nfs-subdir-external-provisioner
-    sources:
-    - https://github.com/mccj/HelmCharts/tree/main/charts/nfs-subdir-external-provisioner
+  k8s-for-mikrotik-loadbalancer:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-02-15T15:07:54.2973089+08:00"
+    description: k8s for mikrotik loadbalancer
+    digest: 0468829aa29e1c492c7c103edfe069ef437726fa905d45f9e4b9cd3c038aa60c
+    icon: https://i.mt.lv/img/mt/v2/logo.svg
+    name: k8s-for-mikrotik-loadbalancer
+    type: application
     urls:
-    - https://github.com/mccj/HelmCharts/releases/download/001/nfs-subdir-external-provisioner-4.0.2.tgz
-    version: 4.0.11
-generated: "2021-02-04T17:34:50.82508993Z"
+    - releases/k8s-for-mikrotik-loadbalancer-0.1.21.tgz
+    version: 0.1.21
+generated: "2022-02-15T15:07:54.2956449+08:00"

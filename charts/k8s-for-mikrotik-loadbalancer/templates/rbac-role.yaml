@@ -1,0 +1,110 @@
+# Role
+{{- if and .Values.rbac.create (not .Values.rbac.clusterAdminRole) }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app: {{ template "k8s-for-mikrotik-loadbalancer.name" . }}
+    chart: {{ template "k8s-for-mikrotik-loadbalancer.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ template "k8s-for-mikrotik-loadbalancer.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+rules:
+  # Allow Dashboard to create 'k8s-for-mikrotik-loadbalancer-key-holder' secret.
+- apiGroups:
+    - ""
+  resources:
+    - secrets
+  verbs:
+    - create
+
+  # Allow Dashboard to create 'k8s-for-mikrotik-loadbalancer-settings' config map.
+- apiGroups:
+    - ""
+  resources:
+    - configmaps
+  verbs:
+    - create
+
+  # Allow Dashboard to get, update and delete Dashboard exclusive secrets.
+- apiGroups:
+    - ""
+  resources:
+    - secrets
+  resourceNames:
+    - k8s-for-mikrotik-loadbalancer-key-holder
+    - {{ template "k8s-for-mikrotik-loadbalancer.fullname" . }}
+  verbs:
+    - get
+    - update
+    - delete
+
+  # Allow Dashboard to get and update 'k8s-for-mikrotik-loadbalancer-settings' config map.
+- apiGroups:
+    - ""
+  resources:
+    - configmaps
+  resourceNames:
+    - k8s-for-mikrotik-loadbalancer-settings
+  verbs:
+    - get
+    - update
+
+  # Allow Dashboard to get metrics from heapster.
+- apiGroups:
+    - ""
+  resources:
+    - services
+  resourceNames:
+    - heapster
+  verbs:
+    - proxy
+- apiGroups:
+    - ""
+  resources:
+    - services/proxy
+  resourceNames:
+    - heapster
+    - "http:heapster:"
+    - "https:heapster:"
+  verbs:
+    - get
+{{- end -}}
+
+
+
+---
+
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   name: {{ include "k8s-for-mikrotik-loadbalancer.fullname" . }}
+#   # namespace: {{ .Release.Namespace }}
+#   # labels:
+#   #   app: {{ template "k8s-for-mikrotik-loadbalancer.name" . }}
+#   #   chart: {{ template "k8s-for-mikrotik-loadbalancer.chart" . }}
+#   #   component: {{ template "k8s-for-mikrotik-loadbalancer.name" . }}
+#   #   heritage: {{ .Release.Service }}
+#   #   release: {{ .Release.Name }}
+# rules:
+# - apiGroups:
+#   - ''
+#   resources:
+#   - services
+#   - endpoints
+#   - pods
+#   - Nodes
+#   - Deployment
+#   - Replicasets
+#   - Statefulsets
+#   - Namespace
+#   - Persistents
+#   - Secrets
+#   - ConfigMaps
+#   # - pods/log
+#   verbs:
+#   - get
+#   - watch
+#   - list
+#   - use

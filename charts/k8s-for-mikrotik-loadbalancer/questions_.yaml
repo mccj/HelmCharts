@@ -1,0 +1,113 @@
+categories:
+- storage
+labels:
+  io.rancher.certified: experimental
+  io.rancher.role: cluster
+questions:
+- variable: ingress.enabled
+  default: "true"
+  description: "是否启用域名"
+  label: "是否启用域名"
+  type: boolean
+  show_subquestion_if: true
+  group: "ingress"
+  subquestions:
+  - variable: ingress.hosts[0].host
+    default: "agileconfig.dev.k8s.cluster.ink"
+    description: "域名"
+    type: string
+    label: "域名"
+    group: "ingress"
+  - variable: ingress.hosts[0].paths[0].path
+    default: "/"
+    description: "域名路径"
+    type: string
+    label: "域名路径"
+    group: "ingress"
+  - variable: ingress.hosts[0].paths[0].pathType
+    default: "ImplementationSpecific"
+    description: "路径类型"
+    type: enum
+    label: "路径类型"
+    group: "ingress"
+    options:
+        - "ImplementationSpecific"
+        - "Exact"
+        - "Prefix"
+- variable: balancer.kubernetesIsLocal
+  default: "true"
+  description: "是否本地 Kubernetes"
+  label: "是否本地 Kubernetes"
+  type: boolean
+  show_subquestion_if: false
+  group: "Kubernetes"
+  subquestions:
+  - variable: balancer.kubernetesHost
+    default: "KUBERNETES or https://10.11.12.40:6443"
+    description: "Kubernetes 链接"
+    type: string
+    label: "Kubernetes 链接"
+    group: "Kubernetes"
+  - variable: balancer.kubernetesAccessToken
+    type: string
+    default: 
+    description: "Kubernetes 访问码"
+    label: "Kubernetes 访问码"
+    group: "Kubernetes"
+  - variable: balancer.kubernetesClientCertificateKeyData
+    type: string
+    default: 
+    description: "Kubernetes Client Certificate Key"
+    label: "Kubernetes Client Certificate Key"
+    group: "Kubernetes"
+# MikroTik
+- variable: balancer.mikroTikHost
+  default: "10.251.11.1"
+  description: "MikroTik 主机"
+  type: string
+  required: true
+  label: "MikroTik 主机"
+  group: "MikroTik"
+- variable: balancer.mikroTikUser
+  default: "admin"
+  description: "MikroTik 账号"
+  type: string
+  required: true
+  label: "MikroTik 账号"
+  group: "MikroTik"
+- variable: balancer.mikroTikPassword
+  default: ""
+  description: "MikroTik 密码"
+  type: password
+  required: true
+  label: "MikroTik 密码"
+  group: "MikroTik"
+# Setting
+- variable: balancer.clusterName
+  default: "3-vsphere-test"
+  description: "群集名称"
+  type: string
+  required: true
+  label: "群集名称"
+  group: "setting"
+- variable: balancer.hostRegexps
+  default: ".*\\.test\\.k8s\\.cluster\\.ink"
+  description: "请求主机链接"
+  type: multiline
+  required: false
+  label: "请求主机链接(正则)"
+  group: "setting"
+- variable: balancer.hostNames
+  default: "www.test.cluster.ink"
+  description: "请求主机链接"
+  type: multiline
+  required: false
+  label: "请求主机链接(名称)"
+  group: "setting"
+- variable: balancer.period
+  default: "0:0:30"
+  description: "定时器检查间隔"
+  type: string
+  required: true
+  label: "定时器间隔"
+  group: "setting"
